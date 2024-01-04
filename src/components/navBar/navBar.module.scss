@@ -1,0 +1,29 @@
+.navBar {
+  display: flex;
+  width: 100%;
+  height: 44px;
+  background-color: #27272A;
+  font-family: Roboto;
+  align-items: center;
+  border-bottom: 1px solid #414144;
+
+  & svg {
+    margin-left: 20px;
+  }
+
+  .view {
+    padding-top:12px;
+    padding-left:8px;
+    width: 73px;
+    height: 44px;
+    margin-left: 34px;
+
+    color: #FFFFFF;
+    border-bottom:2px solid #FFFFFF;
+  }
+
+  .management {
+    margin-left: 28px;
+    color: #A1A1AA;
+  }
+}

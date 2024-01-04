@@ -1,0 +1,36 @@
+$gray-color:#A1A1AA;
+
+.sideBar{
+  background-color: #27272A;
+  height: 992px;
+  width: 234px;
+  font-family: "Roboto";
+
+  .sideBarHeader{
+    display: flex;
+    height: 45px;
+    border-bottom: 1px solid #414144;
+    align-items: center;
+    justify-content: space-around;
+  }
+  & h1{
+    font-size: 14px;
+    color:$gray-color;
+  }
+  & span{
+    font-size: 10px;
+    color:$gray-color;
+  }
+  .sideBarItem{
+    display: flex;
+    align-items: center;
+    height: 32px;
+    color: $gray-color;
+    .itemIcon{
+      margin-left: 24px;
+    }
+    .itemName{
+      margin-left: 18px;
+    }
+  }
+}

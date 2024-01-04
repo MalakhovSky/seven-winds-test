@@ -1,0 +1,29 @@
+$border-color:#414144;
+
+.mainContent{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 1666px;
+  border-top: 1px solid $border-color;
+  & ul {
+    display: flex;
+    font-size: 14px;
+
+    & li {
+      color: #FFFFFF;
+      width: 200px;
+      height: 60px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .img{
+      width: 110px;
+    }
+    .name {
+      width: 757px;
+    }
+
+  }}

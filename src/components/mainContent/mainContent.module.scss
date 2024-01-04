@@ -1,0 +1,49 @@
+$gray-color:#A1A1AA;
+$border-color:#414144;
+
+.container{
+  font-family: Roboto;
+  background-color: #202124;
+  width:1686px;
+
+  .header{
+    border-bottom: 1px solid $border-color;
+    .heading{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 312px;
+      height: 44px;
+      font-size: 18px;
+      border-right: 1px solid $border-color;
+
+      color: #FFFFFF;
+    }
+  }
+
+  .mainContent{
+    margin-left: 10px;
+    margin-right: 10px;
+    & ul{
+      display: flex;
+      color:$gray-color;
+      font-size: 14px;
+      & li{
+        width: 200px;
+        height: 30px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 12px;
+      }
+
+      li:nth-child(1){
+        width: 110px;
+      }
+      li:nth-child(2){
+        width: 757px;
+      }
+
+    }
+  }
+}
