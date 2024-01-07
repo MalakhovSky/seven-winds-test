@@ -17,47 +17,71 @@ function MainContent({eID}: PropsType) {
   const [createRow, {isError, data: currentRow}] = useCreateRowMutation(); // хук на создание строки
   const [threeData, setTreeData] = useState<any[]>([]); // данные дерева
 
-  useEffect(() => {
-   if(initialTreeData) setTreeData(initialTreeData);
-  }, [initialTreeData]);
+  // useEffect(() => {
+  //  if(initialTreeData) setTreeData(initialTreeData);
+  // }, [initialTreeData]);
 
-
-  const createHandeRow = async (e: React.KeyboardEvent<HTMLFormElement>,
-                                name?: string,
-                                equipment?: number,
-                                profit?: number,
-                                salary?: number,
-                                overheads?: number,
-                                parentId?:number) => {
-    try {
-
-      if (e.key === 'Enter') await createRow({
-        body: {
-          "equipmentCosts": equipment,
-          "estimatedProfit": profit,
-          "machineOperatorSalary": 0,
-          "mainCosts": 0,
-          "materials": 0,
-          "mimExploitation": 0,
-          "overheads": overheads,
-          "parentId": parentId,
-          "rowName": name,
-          "salary": salary,
-          "supportCosts": 0
-
-        }, eID: eID
-      }).unwrap()
-      console.log('created----------')
-
-    } catch {
-      return isError
-    }
+  const createHandeRow =(rowName:string, equipment:number, profit:number, salary:number, overheads:number,)  =>{
+    setTreeData(prevState => [...prevState,{
+              "id":Date.now(),
+              "equipmentCosts": equipment,
+              "estimatedProfit": profit,
+              "machineOperatorSalary": 0,
+              "mainCosts": 0,
+              "materials": 0,
+              "mimExploitation": 0,
+              "overheads": overheads,
+              "rowName": rowName,
+              "salary": salary,
+              "supportCosts": 0}])
   }
-  //
+
+  const updateHandeRow = (rowName:string, equipment:number, profit:number, salary:number, overheads:number) =>{
+
+
+  }
+
   useEffect(() => {
-    if(currentRow) {
-          setTreeData((prevState) => [...prevState,currentRow.current])} // иначе 1 элемент undefined,погуглить
-  }, [currentRow]);
+
+  }, []);
+
+
+  // const createHandeRow = async (e: React.KeyboardEvent<HTMLFormElement>,
+  //                               name?: string,
+  //                               equipment?: number,
+  //                               profit?: number,
+  //                               salary?: number,
+  //                               overheads?: number,
+  //                               parentId?:number) => {
+  //   try {
+  //
+  //     // if (e.key === 'Enter') await createRow({
+  //     //   body: {
+  //     //     "equipmentCosts": equipment,
+  //     //     "estimatedProfit": profit,
+  //     //     "machineOperatorSalary": 0,
+  //     //     "mainCosts": 0,
+  //     //     "materials": 0,
+  //     //     "mimExploitation": 0,
+  //     //     "overheads": overheads,
+  //     //     "parentId": parentId,
+  //     //     "rowName": name,
+  //     //     "salary": salary,
+  //     //     "supportCosts": 0
+  //     //
+  //     //   }, eID: eID
+  //     // }).unwrap() Запрос по энтеру
+  //     console.log('created----------')
+  //
+  //   } catch {
+  //     return isError
+  //   }
+  // }
+  //
+  // useEffect(() => {
+  //   if(currentRow) {
+  //         setTreeData((prevState) => [...prevState,currentRow.current])} // иначе 1 элемент undefined,погуглить
+  // }, [currentRow]);
 
   //
   console.log(currentRow?.current,'CURRENT ROW')
@@ -74,17 +98,20 @@ function MainContent({eID}: PropsType) {
           <div className={s.mainContent}>
             <MainContentHeader/>
           </div>
-          {currentRow?.current  !== undefined ?
+          {threeData.length > 0?
               <div>
                 {
                   threeData?.map((obj,index)=>(
-                      <Row  key={obj.id}
+                      <Row
+                          key={index}
                             currentData={obj}
                             eID={eID}
                             threeData={threeData}
                             setTreeData={setTreeData}
                             createRow={createRow}
-                            currentRow={currentRow}/>
+                            currentRow={currentRow}
+                          createHandeRow={createHandeRow}
+                      rowId={obj.id}/>
                   ))
                 }
               </div>
