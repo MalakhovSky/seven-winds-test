@@ -7,6 +7,7 @@ interface PropsType {
 }
 
 function EditForm({
+                    currentRow,
                     createHandeRow,
                     rowId,
                     eID,
@@ -46,22 +47,37 @@ function EditForm({
 
   const onEnterCreate = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
-      createHandeRow(rowName, equipment, profit, salary, overheads)
+      createHandeRow(rowName, equipment, profit, salary, overheads,rowId)
       console.log(threeData)
     }
   }
-  const onEnterUpdate = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  const onEnterUpdate = async (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
+      await updateRow({
+            body: {
+              "equipmentCosts": equipment,
+              "estimatedProfit": profit,
+              "machineOperatorSalary": 0,
+              "mainCosts": 0,
+              "materials": 0,
+              "mimExploitation": 0,
+              "overheads": overheads,
+              "rowName": rowName,
+              "salary": salary,
+              "supportCosts": 0
+            }, eID: eID, rID: rowId
+        // currentData?.id
+          })
       setTreeData(threeData.map((obj: any) => (
           obj.id === rowId ? {
             ...obj, rowName: rowName,
             salary: salary,
-            equipmentCost: equipment,
+            equipmentCosts: equipment,
             overheads: overheads,
             estimatedProfit: profit
           } : obj
-
       )))
+      setIsOpenEdit(false)
 
     }
 

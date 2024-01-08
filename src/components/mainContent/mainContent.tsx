@@ -17,24 +17,36 @@ function MainContent({eID}: PropsType) {
   const [createRow, {isError, data: currentRow}] = useCreateRowMutation(); // хук на создание строки
   const [threeData, setTreeData] = useState<any[]>([]); // данные дерева
 
+
   // useEffect(() => {
   //  if(initialTreeData) setTreeData(initialTreeData);
   // }, [initialTreeData]);
 
-  const createHandeRow =(rowName:string, equipment:number, profit:number, salary:number, overheads:number,)  =>{
-    setTreeData(prevState => [...prevState,{
-              "id":Date.now(),
-              "equipmentCosts": equipment,
-              "estimatedProfit": profit,
+  const createHandeRow  = async (rowName:string, equipment:number, profit:number, salary:number, overheads:number,rowId:number)  =>{
+
+    try {
+          await createRow({
+            body: {
+              "equipmentCosts": equipment? equipment: 0,
+              "estimatedProfit": profit? profit :0,
               "machineOperatorSalary": 0,
               "mainCosts": 0,
               "materials": 0,
               "mimExploitation": 0,
-              "overheads": overheads,
-              "rowName": rowName,
-              "salary": salary,
-              "supportCosts": 0}])
-  }
+              "overheads": overheads? overheads: 0,
+              "parentId": rowId?rowId : undefined, ///// ВОПРОС
+              "rowName": rowName?rowName :0,
+              "salary": salary? salary: 0,
+              "supportCosts": 0
+
+            }, eID: eID
+          }).unwrap()
+
+        } catch {
+          return isError
+        }
+      }
+
 
   const updateHandeRow = (rowName:string, equipment:number, profit:number, salary:number, overheads:number) =>{
 
@@ -78,10 +90,10 @@ function MainContent({eID}: PropsType) {
   //   }
   // }
   //
-  // useEffect(() => {
-  //   if(currentRow) {
-  //         setTreeData((prevState) => [...prevState,currentRow.current])} // иначе 1 элемент undefined,погуглить
-  // }, [currentRow]);
+  useEffect(() => {
+    if(currentRow) {
+          setTreeData((prevState) => [...prevState,currentRow.current])} // иначе 1 элемент undefined,погуглить
+  }, [currentRow]);
 
   //
   console.log(currentRow?.current,'CURRENT ROW')
@@ -102,6 +114,7 @@ function MainContent({eID}: PropsType) {
               <div>
                 {
                   threeData?.map((obj,index)=>(
+
                       <Row
                           key={index}
                             currentData={obj}
@@ -116,7 +129,7 @@ function MainContent({eID}: PropsType) {
                 }
               </div>
               :
-              <EditForm createHandeRow={createHandeRow}/>
+              <EditForm  createHandeRow={createHandeRow}/>
           }
         </div>
     )

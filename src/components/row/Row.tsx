@@ -24,9 +24,9 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
   const [deleteRow] = useDeleteRowMutation();
 
 
-  useEffect(() => {
-    if(currentData) setData(currentData)
-  }, []);
+  // useEffect(() => {
+  //   if(currentData) setData(currentData)
+  // }, []);
 
 
 
@@ -57,11 +57,11 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
   //   setTreeData(prevState => [...prevState, {}])// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // }
   const handleDeleteRow = async (id:number)=>{
-    // try{
-    //   await deleteRow({eID,rID:currentData.id})
-    // }catch(e){
-    //   console.log(e,'delete error')
-    // } Запрос
+    try{
+      await deleteRow({eID,rID:currentData.id})
+    }catch(e){
+      console.log(e,'delete error')
+    }
     setTreeData(threeData.filter((row:any)=>row.id !== id))
   }
 
@@ -70,11 +70,11 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
       <div className={s.mainContent}>
         <ul>
           <li className={s.img}>
-            <div onClick={()=>createHandeRow()}> +</div>
+            <div onClick={()=>createHandeRow('', 0, 0, 0, 0,rowId)}> +</div>
             <div onClick={()=> handleDeleteRow(rowId)}> -</div>
           </li>
           {
-            isOpenEdit ? <EditForm eID={eID}
+            isOpenEdit || !currentData.rowName ? <EditForm eID={eID}
                                    currentData={currentData}
                                    setData={setData}
                                    setIsOpenEdit={setIsOpenEdit}
@@ -89,12 +89,12 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
                 <ul
                     onDoubleClick={(e) => handeToggleEdit()}>
                   <li className={s.name}>
-                    {data?.rowName}
+                    {currentData?.rowName}
                   </li>
-                  <li>{data?.salary}</li>
-                  <li>{data?.equipmentCosts}</li>
-                  <li>{data?.overheads}</li>
-                  <li>{data?.estimatedProfit}</li>
+                  <li>{currentData?.salary}</li>
+                  <li>{currentData?.equipmentCosts}</li>
+                  <li>{currentData?.overheads}</li>
+                  <li>{currentData?.estimatedProfit}</li>
                 </ul>
           }
 
