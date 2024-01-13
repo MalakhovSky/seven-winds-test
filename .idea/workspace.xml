@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6afa7903-f5f0-4ad0-a454-fb10d38e0528" name="Changes" comment="refactor render logic, add functions: onEnterCreate,onEnterUpdate,deleteRow">
+    <list default="true" id="6afa7903-f5f0-4ad0-a454-fb10d38e0528" name="Changes" comment="Добавил запросы к функциям рендера: createHandeRow, updateRow, deleteRow.&#10;&#10;Исправил баг с созданием чилдов.&#10;Испарвил двойное добавление по рендеру.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editForm/editForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editForm/editForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mainContent/mainContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainContent/mainContent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/row/Row.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/row/Row.tsx" afterDir="false" />
     </list>
@@ -66,7 +65,12 @@
       <workItem from="1704386591021" duration="646000" />
       <workItem from="1704448695468" duration="4498000" />
       <workItem from="1704617135796" duration="4964000" />
-      <workItem from="1704710538991" duration="6775000" />
+      <workItem from="1704710538991" duration="6958000" />
+      <workItem from="1704736707308" duration="19000" />
+      <workItem from="1704984554116" duration="3056000" />
+      <workItem from="1704988012976" duration="594000" />
+      <workItem from="1705079617511" duration="3769000" />
+      <workItem from="1705150332309" duration="1558000" />
     </task>
     <task id="LOCAL-00001" summary="started build">
       <created>1704381211522</created>
@@ -82,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704622169223</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавил запросы к функциям рендера: createHandeRow, updateRow, deleteRow.&#10;&#10;Исправил баг с созданием чилдов.&#10;Испарвил двойное добавление по рендеру.">
+      <created>1704717602225</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704717602225</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +113,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="started build" />
     <MESSAGE value="refactor render logic, add functions: onEnterCreate,onEnterUpdate,deleteRow" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor render logic, add functions: onEnterCreate,onEnterUpdate,deleteRow" />
+    <MESSAGE value="Добавил запросы к функциям рендера: createHandeRow, updateRow, deleteRow.&#10;&#10;Исправил баг с созданием чилдов.&#10;Испарвил двойное добавление по рендеру." />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил запросы к функциям рендера: createHandeRow, updateRow, deleteRow.&#10;&#10;Исправил баг с созданием чилдов.&#10;Испарвил двойное добавление по рендеру." />
   </component>
 </project>

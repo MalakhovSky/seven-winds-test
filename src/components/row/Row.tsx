@@ -36,7 +36,6 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
 
 
 
-
   // const handleCreateRow = async () =>{
   //   // await createRow({
   //   //   body: {
@@ -66,9 +65,11 @@ function Row({currentData,eID,threeData,setTreeData,rowId,createHandeRow,current
   }
 
 
+
   return (
       <div className={s.mainContent}>
         <ul>
+
           <li className={s.img}>
             <div onClick={()=>createHandeRow('', 0, 0, 0, 0,rowId)}> +</div>
             <div onClick={()=> handleDeleteRow(rowId)}> -</div>

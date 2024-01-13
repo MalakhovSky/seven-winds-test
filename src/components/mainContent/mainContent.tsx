@@ -18,10 +18,6 @@ function MainContent({eID}: PropsType) {
   const [threeData, setTreeData] = useState<any[]>([]); // данные дерева
 
 
-  // useEffect(() => {
-  //  if(initialTreeData) setTreeData(initialTreeData);
-  // }, [initialTreeData]);
-
   const createHandeRow  = async (rowName:string, equipment:number, profit:number, salary:number, overheads:number,rowId:number)  =>{
 
     try {
@@ -41,62 +37,38 @@ function MainContent({eID}: PropsType) {
 
             }, eID: eID
           }).unwrap()
-
         } catch {
           return isError
         }
+      //
+      // setTreeData(threeData.map((obj: any) => (
+      //
+      //     obj.id === rowId ? {
+      //       ...obj,
+      //       child:currentRow?.current
+      //     } : obj)))
       }
-
-
-  const updateHandeRow = (rowName:string, equipment:number, profit:number, salary:number, overheads:number) =>{
-
-
-  }
-
   useEffect(() => {
+    if(currentRow){
 
-  }, []);
+      // if(rowIdCallback){
+      //   setTreeData(threeData.map((obj: any) => (
+      //
+      //             obj.id === rowIdCallback ? {
+      //               ...obj,
+      //               child:currentRow?.current
+      //             } : obj)))}
 
+      // if(currentRow){
 
-  // const createHandeRow = async (e: React.KeyboardEvent<HTMLFormElement>,
-  //                               name?: string,
-  //                               equipment?: number,
-  //                               profit?: number,
-  //                               salary?: number,
-  //                               overheads?: number,
-  //                               parentId?:number) => {
-  //   try {
-  //
-  //     // if (e.key === 'Enter') await createRow({
-  //     //   body: {
-  //     //     "equipmentCosts": equipment,
-  //     //     "estimatedProfit": profit,
-  //     //     "machineOperatorSalary": 0,
-  //     //     "mainCosts": 0,
-  //     //     "materials": 0,
-  //     //     "mimExploitation": 0,
-  //     //     "overheads": overheads,
-  //     //     "parentId": parentId,
-  //     //     "rowName": name,
-  //     //     "salary": salary,
-  //     //     "supportCosts": 0
-  //     //
-  //     //   }, eID: eID
-  //     // }).unwrap() Запрос по энтеру
-  //     console.log('created----------')
-  //
-  //   } catch {
-  //     return isError
-  //   }
-  // }
-  //
-  useEffect(() => {
-    if(currentRow) {
-          setTreeData((prevState) => [...prevState,currentRow.current])} // иначе 1 элемент undefined,погуглить
+      setTreeData((prevState) => [...prevState,currentRow.current])}
+
   }, [currentRow]);
 
+
+
   //
-  console.log(currentRow?.current,'CURRENT ROW')
+  console.log(currentRow,'CURRENT ROW')
   console.log(threeData,'TREEEEEE')
 
   if(threeData !== undefined){
@@ -111,7 +83,7 @@ function MainContent({eID}: PropsType) {
             <MainContentHeader/>
           </div>
           {threeData.length > 0?
-              <div>
+              <ul>
                 {
                   threeData?.map((obj,index)=>(
 
@@ -127,7 +99,7 @@ function MainContent({eID}: PropsType) {
                       rowId={obj.id}/>
                   ))
                 }
-              </div>
+              </ul>
               :
               <EditForm  createHandeRow={createHandeRow}/>
           }
